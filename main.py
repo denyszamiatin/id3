@@ -9,7 +9,8 @@ try:
     # предполагается что на данном этапе наше приложение получает один аргумент коммандной строки
     # протестировано: python3.6 main.py /Users/MacUser/Music
     # В результате выдает список всех mp3 файлов в заданной директории с версиями и тегами
-    mp3s = mp3_class.mp3list.MP3List([], mp3_class.mp3list.PickleSerializer())
+    mp3s = mp3_class.mp3list.MP3List(
+        [], mp3_class.mp3list.PickleSerializer())
 
     sid.find_all_mp3_in_current_dir(sys.argv[1], mp3s)
         
