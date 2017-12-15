@@ -23,3 +23,4 @@ except IndexError:
 
 except FileNotFoundError:
     print("Path [{}] does not exist".format(sys.argv[1]))
+
