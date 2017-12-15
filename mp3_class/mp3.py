@@ -77,6 +77,7 @@ class MP3Format:
         self.full_path = path
         _, self.name = os.path.split(path)
         self.meta_data = self._parse_id3_tags()
+        self.current_folder_name = self.full_path.rsplit(os.sep)[-2]  # моя личная просьба оставить этот атрибут
 
     def _parse_id3_tags(self):
         with open(self.full_path, 'rb') as fd:
