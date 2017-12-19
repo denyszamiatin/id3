@@ -10,10 +10,10 @@ class MP3List:
     def add(self, mp3):
         self.mp3s.append(mp3)
 
-    def serialise(self):
+    def serialize(self):
         self.serializer.serialize(self.mp3s)
 
-    def deserialise(self):
+    def deserialize(self):
         self.mp3s = self.serializer.deserialize()
 
 
@@ -30,4 +30,3 @@ class PickleSerializer:
         import pickle
         with open(self.filename, 'rb') as f:
             return pickle.load(f)
-
