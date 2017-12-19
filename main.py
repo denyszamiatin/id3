@@ -16,7 +16,7 @@ try:
         
     for mp3 in mp3s.mp3s:
         print('mp3 version {}: {}'.format(mp3.meta_data['version'], mp3.full_path))
-
+    
 
 # если файл будет запускаться не с коммандной строки и/или без параметров
 except IndexError:
