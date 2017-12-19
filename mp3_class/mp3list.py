@@ -13,6 +13,9 @@ class MP3List:
     def serialise(self):
         self.serializer.serialize(self.mp3s)
 
+    def deserialise(self):
+        self.mp3s = self.serializer.deserialize()
+
 
 class PickleSerializer:
     def __init__(self, filename='mp3list.lst'):
@@ -22,3 +25,9 @@ class PickleSerializer:
         import pickle
         with open(self.filename, 'wb') as f:
             pickle.dump(obj, f)
+
+    def deserialize(self):
+        import pickle
+        with open(self.filename, 'rb') as f:
+            return pickle.load(f)
+
