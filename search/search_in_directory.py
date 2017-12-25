@@ -2,7 +2,8 @@
 
 import os
 import fnmatch
-import mp3_class.mp3 as mp3
+# import mp3_class.mp3 as mp3
+import mp3_class.mp3mutagen as id3
 
 
 def find_all_mp3_in_current_dir(path, mp3s):
@@ -13,4 +14,4 @@ def find_all_mp3_in_current_dir(path, mp3s):
     for root, dirs, files in os.walk(path):
         for file in files:
             if fnmatch.fnmatch(file, '*.mp3'):
-                mp3s.add(mp3.MP3Format(os.path.join(root, file)))
+                mp3s.add(id3.ID3Tags(os.path.join(root, file)))
