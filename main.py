@@ -1,8 +1,8 @@
 #!/usr/bin/env python3.6
 
 import sys
-# import mp3_class.mp3list
-import mp3_class.mp3mutagen
+import mp3_class.mp3list
+
 
 import search.search_in_directory as sid
 
@@ -11,16 +11,12 @@ try:
     # протестировано: python3.6 main.py /Users/MacUser/Music
     # В результате выдает список всех mp3 файлов в заданной директории с версиями и тегами
 
-    # mp3s = mp3_class.mp3list.MP3List(
-    #     [], mp3_class.mp3list.PickleSerializer())
-
-    mp3s = mp3_class.mp3mutagen.ID3List([])
+    mp3s = mp3_class.mp3list.MP3List([], mp3_class.mp3list.PickleSerializer())
 
     sid.find_all_mp3_in_current_dir(sys.argv[1], mp3s)
         
-    # for mp3 in mp3s.mp3s:
-    #     print('mp3 version {}: {}'.format(mp3.meta_data['version'], mp3.full_path))
     for mp3 in mp3s.mp3s:
+        print(mp3.full_path)
         print('{}\n{}\ntitle : {}\nartist: {}\nalbum : {}\n'.format(mp3.full_path,
                                                                     mp3.name,
                                                                     mp3.meta_data['TIT2'],

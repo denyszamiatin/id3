@@ -2,7 +2,6 @@
 
 import os
 import fnmatch
-# import mp3_class.mp3 as mp3
 import mp3_class.mp3mutagen as id3
 
 
