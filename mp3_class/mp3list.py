@@ -1,3 +1,6 @@
+import collections
+
+
 class MP3List:
     """ mp3s - list of MP3Format objects
     serializer - serialise method (pickle, json etc)
@@ -5,23 +8,16 @@ class MP3List:
 
     def __init__(self, mp3s, serializer):
         self.mp3s = list(mp3s)
+        self.indexes = {}
         self.serializer = serializer
 
-    def make_index_all(self):
-        #self.index_TIT2 = self.indexing('TIT2')
-        self.index_TPE1 = self.make_index('TPE1')
-        self.index_TALB = self.make_index('TALB')
-
     def make_index(self, tagname):
-        d = {}
+        self.indexes[tagname] = self._make_index(tagname)
+
+    def _make_index(self, tagname):
+        d = collections.defaultdict(list)
         for mp3 in self.mp3s:
-            tgnm = str(mp3.meta_data[tagname])
-            if tgnm in d.keys():
-                sps = d.get(tgnm)
-            else:
-                sps = []
-            sps.append(mp3)
-            d[tgnm] = sps
+            d[str(mp3.meta_data[tagname])].append(mp3)
         return d
 
     def add(self, mp3):
