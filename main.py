@@ -14,7 +14,7 @@ try:
     mp3s = mp3_class.mp3list.MP3List([], mp3_class.mp3list.PickleSerializer())
 
     sid.find_all_mp3_in_current_dir(sys.argv[1], mp3s)
-        
+    mp3s.make_index_all()
     for mp3 in mp3s.mp3s:
         print(mp3.full_path)
         print('{}\n{}\ntitle : {}\nartist: {}\nalbum : {}\n'.format(mp3.full_path,
