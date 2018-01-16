@@ -18,5 +18,10 @@ class ID3Tags(mp3.MP3Format):
     """
 
     def _parse_id3_tags(self):
-        tags = ID3(self.full_path)
+        id3 = ID3(self.full_path)
+        tags = {
+            tag:id3.get(tag).text[0]
+            for tag in id3
+            if hasattr(id3.get(tag), 'text')
+        }
         return tags
