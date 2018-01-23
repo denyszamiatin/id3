@@ -1,5 +1,25 @@
 import collections
 
+class PlayList:
+    mp3s = list()
+
+    def addMP3(self, mp3):
+        self.mp3s.append(mp3)
+
+    def addList(self, listmp3):
+        for i in listmp3:
+            self.addMP3(i)
+
+    def save(self, filename):
+        mp3time = 10
+        with open(filename, 'wt') as f:
+            f.write('#EXTM3U\n')
+            for mp3 in self.mp3s:
+                f.write('#EXTINF:%d,%s - %s\n' %(mp3time,
+                                                 mp3.meta_data['TPE1'],
+                                                 mp3.meta_data['TIT2']))
+                f.write(mp3.full_path+'\n')
+
 
 class MP3List:
     """ mp3s - list of MP3Format objects
@@ -28,6 +48,11 @@ class MP3List:
 
     def deserialize(self):
         self.mp3s = self.serializer.deserialize()
+
+    def export(self, tagname, tagvalue):
+        t = self.indexes[tagname]
+        v = t[tagvalue]
+        return v
 
 
 class PickleSerializer:

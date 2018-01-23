@@ -15,6 +15,7 @@ try:
 
     sid.find_all_mp3_in_current_dir(sys.argv[1], mp3s)
     mp3s.make_index('TIT2')
+    mp3s.make_index('TPE1')
     for mp3 in mp3s.mp3s:
         print(mp3.full_path)
         print('{}\n{}\ntitle : {}\nartist: {}\nalbum : {}\n'.format(mp3.full_path,
@@ -23,6 +24,9 @@ try:
                                                                     mp3.meta_data['TPE1'],
                                                                     mp3.meta_data['TALB']))
     
+    playlist = mp3_class.mp3list.PlayList()
+    playlist.addList(mp3s.export('TPE1','VA'))
+    playlist.save('playlist.m3u')
 
 # если файл будет запускаться не с коммандной строки и/или без параметров
 except IndexError:
