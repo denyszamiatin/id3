@@ -1,16 +1,18 @@
 import collections
 
-class PlayList:
-    mp3s = list()
 
-    def addMP3(self, mp3):
+class PlayList:
+    def __init__(self):
+        self.mp3s = []
+
+    def add_MP3(self, mp3):
         self.mp3s.append(mp3)
 
-    def addList(self, listmp3):
-        for i in listmp3:
-            self.addMP3(i)
+    def add_list(self, listmp3):
+        self.mp3s.extend(listmp3)
 
     def save(self, filename):
+        # TODO: replace it by real tag value
         mp3time = 10
         with open(filename, 'wt') as f:
             f.write('#EXTM3U\n')
@@ -50,10 +52,7 @@ class MP3List:
         self.mp3s = self.serializer.deserialize()
 
     def export(self, tagname, tagvalue):
-        t = self.indexes[tagname]
-        v = t[tagvalue]
-        return v
-
+        return self.indexes.get(tagname, {}).get(tagvalue, [])
 
 class PickleSerializer:
     def __init__(self, filename='mp3list.lst'):
