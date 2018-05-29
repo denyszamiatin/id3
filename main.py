@@ -7,6 +7,7 @@ import mp3_class.mp3list
 import search.search_in_directory as sid
 import download.url_download as ud
 
+
 def getparser():
     parser = argparse.ArgumentParser(description='Description here')
     subparsers = parser.add_subparsers(dest='command', help='List of commands')
@@ -23,7 +24,7 @@ def getparser():
     taglist_parser = subparsers.add_parser('P', help='Generate play-list by Tag')
     taglist_parser.add_argument('tag', action='store', help='Tag to select')
     taglist_parser.add_argument('value', action='store', help='Tag value')
-    return arser.parse_args()
+    return parser.parse_args()
 
 
 try:
@@ -63,3 +64,5 @@ except IndexError:
 except FileNotFoundError:
     print("Path [{}] does not exist".format(sys.argv[1]))
 
+
+print('!!!')
